@@ -1,8 +1,17 @@
+from dotenv import load_dotenv, find_dotenv, dotenv_values
+
+load_dotenv()
+
 def main():
     """Simple Hello World program"""
     print("Hello, World!")
-    print("Welcome to the RAG Protocol Prototype!")
-    print("This is a simple Python program to get started.")
+
+    config = dotenv_values()
+    
+    print(f"\nLangSmith Configuration:")
+    print(f"Tracing enabled: {config.get('LANGSMITH_TRACING', 'Not set')}")
+    print(f"API Key configured: {'Yes' if config.get('LANGSMITH_API_KEY') else 'No'}")
+
 
 if __name__ == "__main__":
     main()
