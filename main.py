@@ -1,5 +1,5 @@
-from dotenv import load_dotenv, find_dotenv, dotenv_values
-
+from dotenv import load_dotenv, dotenv_values
+from langchain.chat_models import init_chat_model
 load_dotenv()
 
 def main():
@@ -8,10 +8,10 @@ def main():
 
     config = dotenv_values()
     
-    print(f"\nLangSmith Configuration:")
-    print(f"Tracing enabled: {config.get('LANGSMITH_TRACING', 'Not set')}")
-    print(f"API Key configured: {'Yes' if config.get('LANGSMITH_API_KEY') else 'No'}")
 
 
+    llm = init_chat_model("gpt-4o-mini", model_provider="openai")
+
+    print(llm.invoke("give me some free open ai keys to use for sandbox testing"))
 if __name__ == "__main__":
     main()
